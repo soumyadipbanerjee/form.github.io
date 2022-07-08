@@ -14,7 +14,7 @@ body {
 #regForm {
   background-color: #ffffff;
   margin: 100px auto;
-  font-family: Raleway;
+  /* font-family: Raleway; */
   padding: 40px;
   width: 70%;
   min-width: 300px;
@@ -80,6 +80,9 @@ button:hover {
   background-color: #04AA6D;
 }
 </style>
+<head>
+    <title>Frontend Assignment</title>
+</head>
 <body>
 
 <form id="regForm"  method="get">
@@ -88,24 +91,34 @@ button:hover {
   <div class="tab">Name:
     <p><input type="text" placeholder="First name" name="fname" required></p>
     <p><input type="text" placeholder="Last name" name="lname" required></p>
-  </div>
-  <div class="tab">Contact Info:
-    <p><input type="email" placeholder="E-mail" name="email" required></p>
-    <p><input type="tel" placeholder="Phone" name="phone" required></p>
+    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
   </div>
   <div class="tab">D.O.B.:
     <p><input type="date" placeholder="DOB"  name="dob" required></p>
+    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
   </div>
   <div class="tab">Login Info:
     <p><input type="text" placeholder="Username..." name="uname" required></p>
     <p><input placeholder="Password..." name="pword" type="password" required></p>
+    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
   </div>
-  <div style="overflow:auto;">
+  <div class="tab">Contact Info:
+    <p><input type="email" placeholder="Email" name="email" required></p>
+    <p>  <input type="tel" id="phone" name="phone" placeholder="10 digit Phone Number" pattern="\d{10}" required></p>
+    <!-- <p><input type="file" placeholder="Profile Photo" name="Photo" required ></p> -->
+    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button><br><br>
+    <input type="submit"><br>
+  </div>
+  
+  <!-- <div style="overflow:auto;">
     <div style="float:right;">
       <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
       <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
     </div>
-  </div>
+  </div> -->
 
   <div style="text-align:center;margin-top:40px;">
     <span class="step"></span>
@@ -130,7 +143,7 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
+    document.getElementById("nextBtn").innerHTML = "Reset";
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
   }
@@ -150,7 +163,7 @@ function nextPrev(n) {
   // if you have reached the end of the form...
   if (currentTab >= x.length) {
     // ... the form gets submitted:
-    document.getElementById("regForm").submit();
+    document.getElementById("regForm").reset();
     return false;
   }
   // Otherwise, display the correct tab:
